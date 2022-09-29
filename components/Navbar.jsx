@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <div className="bg-orange-400 text-white font-semibold py-3">
-      <nav className="flex justify-between sticky items-center text-base gap-3">
-        <div className="ml-14">
+    <div className="bg-orange-400 text-white font-semibold">
+      <nav className="flex justify-between sticky items-center text-base gap-3 ml-10">
+        <div className="">
           <Link href="/">
             <Image
               src="/img/logo.png"
@@ -33,6 +33,14 @@ const Navbar = () => {
               <Link href="/contact">Contact</Link>
             </li>
           </ul>
+        </div>
+        <div className="justify-end flex py-4">
+          <button className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28">
+            Sign In
+          </button>
+          <button className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 mr-28 py-[3] hover:border-orange-500">
+            Sign Out
+          </button>
         </div>
       </nav>
     </div>
