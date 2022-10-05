@@ -26,7 +26,7 @@ const Banner = () => {
         style={{ left: 0 }}
         onClick={() => handleArrow("l")}
       >
-        <Image src="/img/arrowl.png" alt="" layout="fill" objectFit="contain"/>
+        <Image src="/img/arrowl.png" alt="" layout="fill" objectFit="contain" />
       </div>
       <div
         className={styles.wrapper}
@@ -45,6 +45,7 @@ const Banner = () => {
       >
         <Image src="/img/arrowr.png" layout="fill" alt="" objectFit="contain" />
       </div>
+      
     </div>
   );
 };

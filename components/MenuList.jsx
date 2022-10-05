@@ -1,5 +1,7 @@
 import React from 'react'
 import MenuCard from './MenuCard'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const MenuList = () => {
   return (
@@ -20,6 +22,15 @@ const MenuList = () => {
         nostrum reiciendis ducimus, dolores praesentium. Eius autem deleniti
         reiciendis? Hic, labore!
       </p>
+      <div className="flex justify-center items-center mt-5">
+        <input
+          type="input"
+          id="search"
+          name="search"
+          className="border p-2 outline-none rounded-lg focus:bg-gray-50 text-gray-700"
+        />
+        <FontAwesomeIcon icon={faMagnifyingGlass}/>
+      </div>
       <div className="w-100 flex items-center justify-center flex-wrap mt-10 py-10">
         <MenuCard />
         <MenuCard />

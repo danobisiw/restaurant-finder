@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>PD FINDER</title>
+        <title>PD DIRECT</title>
         <meta name="description" content="Restaurant Finder" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
