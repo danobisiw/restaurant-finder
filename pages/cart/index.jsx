@@ -49,9 +49,18 @@ const cart = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex-1 ml-24">
+      <div className="flex-2 ml-24 flex lg:flex-col w-96">
         <div className="rounded-lg max-h-80 bg-gray-300 p-14 py-3 flex lg:flex-col text-white justify-between">
-          CART 
+          <h2>CART TOTAL</h2>
+          <div className="mr-3">
+            <b>SubTotal:</b>GHC 79.6
+          </div>
+          <div className="mr-3">
+            <b>Discount: </b>GHC 0
+          </div>
+          <div className="mr-3">
+            <b>Total: </b>GHC 79.6
+          </div>
         </div>
       </div>
     </div>
