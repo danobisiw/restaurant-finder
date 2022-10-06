@@ -1,33 +1,31 @@
 import db from "../../../lib/dbConnect";
-import User from "../../../models/user"
-import bcrypt from "bcryptjs";
+import User from "../../../models/user.model";
+import bcrypt from "bcrypt";
 
 async function handler(request, response) {
-    if (request.method !== "POST") {
-        response.status(405).json({ error: "only POST method is allowed" })
-        return;
-    }
+  if (request.method !== "POST") {
+    response.status(405).json({ error: "only POST method is allowed" });
+    return;
+  }
 
-    const {firstName, lastName, email, password} = request.body;
+  const { username, password } = request.body;
 
-    await db.connect();
+  await db.connect();
 
-    const emailExists = await User.findOne({ email });
-    if (emailExists) {
-        response.status(409).json({ error: "Email already in use"})
-        await db.disconnect();
-        return;
-    }
+  const emailExists = await User.findOne({ username });
+  if (emailExists) {
+    response.status(409).json({ error: "Email already in use" });
+    await db.disconnect();
+    return;
+  }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const user = await User.create({
-        firstName,
-        lastName,
-        email,
-        password: hashedPassword,
-    });
+  const hashedPassword = await bcrypt.hash(password, 12);
+  const user = await User.create({
+    ...request.body,
+    password: hashedPassword,
+  });
 
-    response.status(201).json({ user });
+  response.status(201).json({ user });
 }
 
 export default handler;

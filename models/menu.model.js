@@ -9,17 +9,20 @@ const menuSchema = new Schema(
       type: String,
     },
     Shop: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
-    totalOrders: {
-      type: Number,
-    },
-    ratings: {
+
+    ratings: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
+    menuDescription: {
       type: String,
     },
+    price: {
+      type: String,
+    },
+    orderCategory: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
   },
   {
     timestamps: true,
   }
 );
 
-const Shop = models.Menu || model("Menu", MenuSchema);
+const Shop = model.Menu || model("Menu", menuSchema);
 export default Menu;
