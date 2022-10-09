@@ -1,34 +1,106 @@
-import React from "react";
+import React,{useState} from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const shopregistration = () => {
+  const [data, setData] = useState({
+   shopName:"",
+     location:"",
+      streetName:"",
+      serviceType:"",
+      email:"",
+contactNumber:"",
+      contactManager:"",
+    region:"",   
+tin:"",
+gpsCode:"",
+  });
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const {
+      shopName,
+     location,
+      streetName,
+      serviceType,
+      email,
+      contactNumber,
+      contactManager,
+    region,
+tin,
+gpsCode,
+    } = data;
+
+    if (shopName=== "" &&
+     location=== "" &&
+      streetName=== "" &&
+      serviceType=== "" &&
+      email=== "" &&
+      contactNumber=== "" &&
+      contactManager=== "" &&
+     region=== "" &&
+      tin=== "" &&
+      gpsCode==="" 
+      
+    ){
+      setError("Please fill all blanks");
+      return;
+    }
+  
+    try {
+     await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/shops`,
+        data
+      );
+      router.push("/menu/add-menu")
+    } catch (error) {
+      setError(error.message);
+    }
+  
+  };
   return (
     <div className="flex   justify-center mt-10 rounded-xl">
-      <form className=" border-3 max-w-l w-6/12 p-5 rounded space-y-3 border-opacity-60 shadow-md bg-blue-50 ">
+      <form
+        className=" border-3 max-w-l w-6/12 p-5 rounded space-y-3 border-opacity-60 shadow-md bg-blue-50 "
+        onSubmit={handleSubmit}
+      >
         <div className="bg-gray-300 flex justify-center items-center h-16 rounded-lg w-full">
           SHOP REGISTRATION
         </div>
+        <div> {error && <p className="text-red-500">{error}</p>}</div>
         <div className=" grid lg:grid-cols-2 gap-5 w-full items-center">
           <div>
-            <label htmlFor="shopname" className="block text-l">
+            <label htmlFor="shopName" className="block text-l">
               Shop Name
             </label>
             <input
-              type="shopname"
-              id="shopname"
-              name="shopname"
+              type="shopName"
+              id="shopName"
+              name="shopName"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.shopName}
+              onChange={handleChange}
             />
           </div>
 
           <div>
-            <label htmlFor="businessregistration" className="block text-l">
-              Business Registration Number
+            <label htmlFor="tin" className="block text-l">
+              TIN Number
             </label>
             <input
-              type="businessregistration"
-              id="businessregistration"
-              name="businessregistration"
+              type="tin"
+              id="tin"
+              name="tin"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.tin}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -40,6 +112,8 @@ const shopregistration = () => {
               id="location"
               name="location"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.location}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -51,39 +125,60 @@ const shopregistration = () => {
               id="region"
               name="region"
               className="border p-2 w-full outline-none rounded-lg"
+              value={data.region}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="gpscode" className="block text-l">
+            <label htmlFor="gpsCode" className="block text-l">
               GPS Code
             </label>
             <input
-              type="gpscode"
-              id="location"
-              name="location"
+              type="gpsCode"
+              id="gpsCode"
+              name="gpsCode"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.gpsCode}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="phonenumber" className="block text-l">
+            <label htmlFor="streetName" className="block text-l">
+              Street Name
+            </label>
+            <input
+              type="streetName"
+              id="streetName"
+              name="streetName"
+              className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.streetName}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="contactNumber" className="block text-l">
               Telephone Number
             </label>
             <input
-              type="phonenumber"
-              id="phonenumber"
-              name="phonenumber"
+              type="contactNumber"
+              id="contactNumber"
+              name="contactNumber"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.contactNumber}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="service" className="block text-l">
+            <label htmlFor="serviceType" className="block text-l">
               Service Type
             </label>
             <select
-              name="service"
-              id="service"
-              type="service"
+              name="serviceType"
+              id="serviceType"
+              type="serviceType"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.serviceType}
+              onChange={handleChange}
             >
               <option value="selecttype">-----Select Service Type----</option>
               <option value="all service">All Service</option>
@@ -101,29 +196,22 @@ const shopregistration = () => {
               id="email"
               name="email"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
-            />
-          </div>
-          <div>
-            <label htmlFor="website" className="block text-l">
-              Website
-            </label>
-            <input
-              type="website"
-              id="website"
-              name="website"
-              className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.email}
+              onChange={handleChange}
             />
           </div>
 
           <div>
-            <label htmlFor="frontdeskcontact" className="block text-l">
-              Front Desk Contact
+            <label htmlFor="contactManager" className="block text-l">
+              Contact Manager
             </label>
             <input
-              type="frontdesknumber"
-              id="frontdesknumber"
-              name="frontdesknumber"
+              type="contactManager"
+              id="contactManager"
+              name="contactManager"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.contactManager}
+              onChange={handleChange}
             />
           </div>
         </div>

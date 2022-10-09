@@ -14,29 +14,27 @@ const userSchema = new Schema(
       type: String,
       required: false,
       lowercase: true,
-      unique: true,
+   
     },
     password: {
       type: String,
       required: true,
     },
-    userName: {
+    username: {
       type: String,
       required: true,
+      unique: true,
+      lowercase: true,
     },
     location: {
       type: String,
       required: true,
     },
-    gpsCode: {
+    gpscode: {
       type: String,
       required: "",
     },
     orders: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
-
-    userName: {
-      type: String,
-    },
   },
   {
     timestamps: true,

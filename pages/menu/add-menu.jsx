@@ -1,38 +1,36 @@
-import axios from 'axios';
-import React,{useState} from 'react'
-import { useRouter } from 'next/router';
+import axios from "axios";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 const AddMenu = () => {
+  const [data, setData] = useState({
+    menuURL: "null",
+    shop: "",  
+    menuDescription: "",
+    price: "",
+    available: "",
+    menuName: "",
+  });
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-    const [data, setData]=useState({
-        menuURL:"",
-        shop:"",
-        menuDescription:"",
-        price:"",
-        orderCategory:"",
-        menuName:"",
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
 
-    });
-const [error, setError]=useState("");
-const router=useRouter();
+  };
 
-const handleChange=(e)=>{
-    setData({...data, [e.target.name]:e.target.value})
-}
-
-    const handleSubmit =async (e)=>{
-        e.preventDefault()
-        try {
-            const response= await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add-menu`,
-           {
-            data,
-           } 
-           )
-           router.push("/")
-        } catch (error) {
-           setError(error.message) 
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`,
+        data
+      );
+      router.push("/");
+    } catch (error) {
+      setError(error.message);
     }
+  };
 
   return (
     <div className="flex  min-h-[calc(100vh-100px)] justify-center items-center text-gray-700 my-2">
@@ -43,15 +41,16 @@ const handleChange=(e)=>{
         <div className="bg-gray-100 text-2xl h-20 justify-center flex items-center rounded-lg">
           Add Menu
         </div>
+        {error && <p className="text-center text-red-500">{error}</p>}
         <div className=" grid w-full items-center">
           <div className="text-gray-700">
-            <label htmlFor="username" className="block text-l">
+            <label htmlfor="menuName" className="block text-l">
               Menu Name
             </label>
             <input
-              type="menuname"
-              id="menuname"
-              name="menuname"
+              type="menuName"
+              id="menuName"
+              name="menuName"
               className="border p-2 w-full resize-none rounded-lg focus:bg-gray-200 text-gray-700 outline-none "
               value={data.menuName}
               onChange={handleChange}
@@ -59,7 +58,7 @@ const handleChange=(e)=>{
           </div>
 
           <div className="text-gray-700">
-            <label htmlFor="password" className="block text-l">
+            <label htmlfor="shop" className="block text-l">
               Shop
             </label>
             <input
@@ -72,21 +71,21 @@ const handleChange=(e)=>{
             />
           </div>
           <div>
-            <label htmlFor="menudescription" className="block text-l">
+            <label htmlfor="menuDescription" className="block text-l">
               Menu Description
             </label>
             <textarea
-              name="menudescription"
+              name="menuDescription"
               cols="5"
-              id="menudescription"
+              id="menuDescription"
               rows="5"
               className="border p-2 w-full rounded-lg focus:bg-gray-200 resize-none outline-none"
-              value={data.menudescription}
+              value={data.menuDescription}
               onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="price" className="block text-l">
+            <label htmlfor="price" className="block text-l">
               Price
             </label>
             <input
@@ -99,20 +98,20 @@ const handleChange=(e)=>{
             />
           </div>
           <div>
-            <label htmlFor="ordercategory" className="block text-l">
-              Order Category
+            <label htmlfor="available" className="block text-l">
+              Available On
             </label>
             <input
-              type="ordercategory"
-              id="ordercategory"
-              name="ordercategory"
+              type="available"
+              id="available"
+              name="available"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
-              value={data.orderCategory}
+              value={data.available}
               onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="menuURL" className="block text-l">
+            <label htmlfor="menuURL" className="block text-l">
               Menu Image
             </label>
             <input
@@ -120,16 +119,13 @@ const handleChange=(e)=>{
               id="menuURL"
               name="menupURL"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
-              value={data.menuURL}
+              // value={data.menuURL}
               onChange={handleChange}
             />
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <button
-            className="border-orange-500 border px-6 py-2 rounded-xl text-range-600 hover:text-white duration-200 hover:bg-orange-500 mt-10 w-full justify-center items-center flex"
-        
-          >
+          <button className="border-orange-500 border px-6 py-2 rounded-xl text-range-600 hover:text-white duration-200 hover:bg-orange-500 mt-10 w-96 justify-center items-center flex">
             Add Menu
           </button>
         </div>
@@ -138,4 +134,4 @@ const handleChange=(e)=>{
   );
 };
 
-export default AddMenu
+export default AddMenu;

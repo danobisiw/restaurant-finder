@@ -1,29 +1,31 @@
-import React from 'react'
-import Image from "next/image"
+import React from "react";
+import Image from "next/image";
+import Link from "next/link"
 
-const MenuCard = () => {
+
+
+const MenuCard = ({ menu }) => {
   return (
     <div>
-    
-
-      <div className="flex flex-col p-2 mb-20 ml-20 gap-5 justify-center items-center w-[50%] max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
+      <div className="flex flex-col p-2 mb-20 ml-20 gap-5 justify-center items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <Link href={`/menu/${menu._id}`}>
           <Image
             className="p-8 rounded-t-lg"
-            src="/img/pizza.png"
+            src={menu.imageUrl}
             alt="product image"
             width="165"
             height="150"
           />
-        </a>
+        </Link>
         <div className="px-5 pb-5">
           <a href="#">
             <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white w-80">
-              Mixed Topped Pizza
+              {menu.menuName}
             </h5>
+            <div className="text-semibold">Available on: {menu.available}</div>
           </a>
-          <h5 className="text-xl font-light tracking-tight text-gray-900 dark:text-white">
-            Sold By:shop
+          <h5 className="text-semibold tracking-tight text-gray-900 dark:text-white">
+            <div>Sold By: {menu.Shop}</div>
           </h5>
           <div className="flex items-center mt-2.5 mb-5">
             <svg
@@ -82,11 +84,11 @@ const MenuCard = () => {
           </div>
           <div className="flex justify-between items-center">
             <p className="text-3xl font-bold text-gray-900 dark:text-white">
-              GHC599
+              GHC {menu?.price}
             </p>
             <a
               href="#"
-              className="text-orange ml-10 w-40 bg-white hover:bg-orange-600 focus:ring-4 focus:outline- focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-white dark:hover:bg-orange-600 dark:focus:ring-orange-600"
+              className="text-orange ml-10 w-30 bg-white hover:bg-orange-600 focus:ring-4 focus:outline- focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-white dark:hover:bg-orange-600 dark:focus:ring-orange-600"
             >
               Order
             </a>
@@ -97,4 +99,4 @@ const MenuCard = () => {
   );
 };
 
-export default MenuCard
+export default MenuCard;

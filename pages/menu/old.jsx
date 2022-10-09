@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
+import { getMenu } from "../../utils/getMenus";
 
-const Menu = () => {
-  const [size, setSize] = useState(0);
-  const menu = {
-    id: 1,
-    menuImage: "/img/pizza.png",
-    menuName: "FUFU PIZZA",
-    price: 539,
-    description:
-      "Lorem20gfd gdgdfgfsdfdilfdjfpjf j kjfkdjg kdgjklfjgk flgjfg 'ssjg'sdgjj jtyu tdsfjdfd jfkdf dd fksdlfk;ds",
+export async function getStaticPaths() {
+  const response = await getMenu();
+
+  const menu = response.map((menu) => ({ params: { menuId: menu._id } }));
+  return {
+    menu,
+    fallback: true,
   };
+}
+
+export async function getStaticProps(context) {
+  const response = await getMenu(context.params.menuId);
+  return {
+    props: {
+      menu,
+    },
+  };
+}
+const MenuDetails = ({ menu }) => {
   return (
     <div className="flex min-h-[calc(100vh-8)]">
       <div className="flex-1 flex items-center justify-center object-contain">
         <div className="w-80 h-64 relative mt-3">
-          <Image src={menu.menuImage} layout="fill" alt="" />
+          <Image src={menu.menuUrl} layout="fill" alt="" />
         </div>
       </div>
       <div className="flex-1 p-5 ">
@@ -67,4 +77,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default MenuDetails;

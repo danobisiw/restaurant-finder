@@ -1,13 +1,14 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
 const menuSchema = new Schema(
   {
     menuUrl: {
       type: String,
     },
-    menuName: {
-      type: String,
+    menuName:{
+      type:String
     },
+    
     Shop: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
 
     ratings: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
@@ -17,6 +18,9 @@ const menuSchema = new Schema(
     price: {
       type: String,
     },
+    available: {
+      type: String,
+    },
     orderCategory: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
   },
   {
@@ -24,5 +28,5 @@ const menuSchema = new Schema(
   }
 );
 
-const Shop = model.Menu || model("Menu", menuSchema);
+const Menu = models.Menu || model("Menu", menuSchema);
 export default Menu;

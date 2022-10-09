@@ -12,8 +12,8 @@ const Navbar = () => {
     router.push("/admin/login");
   };
   return (
-    <div className="bg-orange-400 text-white font-semibold">
-      <nav className="flex justify-between sticky items-center text-base gap-3 ml-10">
+    <div className="bg-orange-400 text-white font-semibold sticky">
+      <nav className="flex justify-between  items-center text-base gap-3 ml-10">
         <div className="cursor-pointer">
           <Link href="/">
             <Image
@@ -45,14 +45,14 @@ const Navbar = () => {
         <div className="justify-end flex py-4">
           {status === "authenticated" ? (
             <button
-              className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 mr-28 py-[3] hover:border-orange-500"
+              className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 mr-28 py-2 hover:border-orange-500"
               onClick={() => signOut({ callbackUrl: "/" })}
             >
               Sign Out
             </button>
           ) : (
             <button
-              className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28"
+              className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 py-2 mr-28"
               onClick={handleClick}
             >
               Sign In

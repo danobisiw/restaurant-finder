@@ -34,6 +34,8 @@ export default NextAuth({
             firstName: user.firstName,
             lastName: user.lastName,
             location: user.location,
+            email:user.email,
+            
           };
         }
 

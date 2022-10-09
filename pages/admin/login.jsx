@@ -35,11 +35,10 @@ function Login() {
         className=" border-3 max-w-l w-4/12 p-5 rounded space-y-3 border-opacity-30 shadow-md  flex-col-2  bg-blue-50"
         onSubmit={handleSubmit}
       >
-    
         <div className="bg-gray-100  h-20 justify-center flex items-center rounded-lg text-2xl">
           LOGIN
         </div>
-        {error && <p className='text-red-500 text-center'>{error}</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
 
         <div>
           <label htmlFor="username" className="block text-l">
@@ -66,13 +65,16 @@ function Login() {
             value={data.password}
             onChange={handleChange}
           />
-          <span className="text-opacity-5 font-light font text-sm">
-            Forgot Password?<Link href="/resetpassword">Click here</Link>
+          <span className="text-opacity-5 font-semibold ">
+            New User?
+            <Link href="/admin/user-registration" className="hover:underline">
+              Click here
+            </Link>
           </span>
         </div>
 
         <div className="flex justify-center">
-          <button className="border-orange-500 border px-6 py-2 rounded-3xl text-range-600 hover:text-white duration-200 hover:bg-orange-500 mt-10 w-full">
+          <button className="border-orange-500 border px-6 py-2 rounded-3xl text-range-600 hover:text-white duration-200 hover:bg-orange-500 mt-10 w-80">
             Login
           </button>
         </div>

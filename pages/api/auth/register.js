@@ -12,9 +12,10 @@ async function handler(request, response) {
 
   await db.connect();
 
-  const emailExists = await User.findOne({ username });
-  if (emailExists) {
-    response.status(409).json({ error: "Email already in use" });
+  const usernameExists = await User.findOne({ username });
+  console.log(usernameExists)
+  if (usernameExists) {
+    response.status(409).json({ error: "Username already in use" });
     await db.disconnect();
     return;
   }

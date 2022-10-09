@@ -2,17 +2,15 @@ const { Schema, model } = require("mongoose");
 
 const ordersSchema = new Schema(
   {
-    orderCategory: [eatin, delivery, pickup],
-
+    orderCategory: [],
+ 
     servedBy: {
       type: String,
     },
     client: [{ type: Schema.Types.ObjectId, ref: "Users" }],
     shopName: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
     orderStatus: [served, delayed, processing],
-    orderTotal: {
-      type: Number,
-    },
+
     clientTelephoneNumber: {
       type: String,
     },
@@ -25,17 +23,24 @@ const ordersSchema = new Schema(
     orderNumber: {
       type: String,
     },
-    additionalRequest: {
-      type: String,
-    },
     deliveryPoint: {
       type: [delivery, frontDesk, table],
     },
-    quantity: {
+    Status: {
+      type: Number,
+      default: 0,
+    },
+    payMethod: {
       type: String,
+     
     },
     additionalRequest: {
-      type: String,
+      type: [
+        {
+          text: { type: String, required: "" },
+          price: { type: Number, required: "" },
+        },
+      ],
     },
   },
   {
@@ -43,5 +48,6 @@ const ordersSchema = new Schema(
   }
 );
 
-const Shop = models.Orders || model("Orders", ordersSchema);
+const orders = models.Orders || model("Orders", ordersSchema);
 export default Orders;
+ 
