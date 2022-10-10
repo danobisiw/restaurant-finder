@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"
-
-
+import Link from "next/link";
 
 const MenuCard = ({ menu }) => {
+  // console.log(menu);
   return (
     <div>
       <div className="flex flex-col p-2 mb-20 ml-20 gap-5 justify-center items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -25,7 +24,7 @@ const MenuCard = ({ menu }) => {
             <div className="text-semibold">Available on: {menu.available}</div>
           </a>
           <h5 className="text-semibold tracking-tight text-gray-900 dark:text-white">
-            <div>Sold By: {menu.Shop}</div>
+            <div>Sold By: {menu.shopName}</div>
           </h5>
           <div className="flex items-center mt-2.5 mb-5">
             <svg

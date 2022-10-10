@@ -14,7 +14,6 @@ const userSchema = new Schema(
       type: String,
       required: false,
       lowercase: true,
-   
     },
     password: {
       type: String,
@@ -34,7 +33,12 @@ const userSchema = new Schema(
       type: String,
       required: "",
     },
-    orders: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
+    telephoneNumber: {
+      type: String,
+      required: true,
+    },
+
+    orders: { type: Schema.Types.ObjectId, ref: "Orders" },
   },
   {
     timestamps: true,

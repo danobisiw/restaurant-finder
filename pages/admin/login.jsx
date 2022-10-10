@@ -45,7 +45,7 @@ function Login() {
             Username
           </label>
           <input
-            type="username"
+            type="username" 
             id="username"
             name="username"
             className="border p-2 w-full outline-none rounded-lg focus:bg-gray-100"

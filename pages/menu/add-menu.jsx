@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const AddMenu = () => {
   const [data, setData] = useState({
     menuURL: "null",
-    shop: "",  
     menuDescription: "",
     price: "",
     available: "",
@@ -13,10 +13,11 @@ const AddMenu = () => {
   });
   const [error, setError] = useState("");
   const router = useRouter();
+  const { data: session } = useSession();
+  console.log(session);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-
   };
 
   const handleSubmit = async (e) => {
@@ -24,7 +25,7 @@ const AddMenu = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`,
-        data
+        { data, Shop: session?.user?._id }
       );
       router.push("/");
     } catch (error) {
@@ -44,7 +45,7 @@ const AddMenu = () => {
         {error && <p className="text-center text-red-500">{error}</p>}
         <div className=" grid w-full items-center">
           <div className="text-gray-700">
-            <label htmlfor="menuName" className="block text-l">
+            <label htmlFor="menuName" className="block text-l">
               Menu Name
             </label>
             <input
@@ -58,7 +59,7 @@ const AddMenu = () => {
           </div>
 
           <div className="text-gray-700">
-            <label htmlfor="shop" className="block text-l">
+            <label htmlFor="shop" className="block text-l">
               Shop
             </label>
             <input
@@ -71,7 +72,7 @@ const AddMenu = () => {
             />
           </div>
           <div>
-            <label htmlfor="menuDescription" className="block text-l">
+            <label htmlFor="menuDescription" className="block text-l">
               Menu Description
             </label>
             <textarea
@@ -85,7 +86,7 @@ const AddMenu = () => {
             />
           </div>
           <div>
-            <label htmlfor="price" className="block text-l">
+            <label htmlFor="price" className="block text-l">
               Price
             </label>
             <input
@@ -98,7 +99,7 @@ const AddMenu = () => {
             />
           </div>
           <div>
-            <label htmlfor="available" className="block text-l">
+            <label htmlFor="available" className="block text-l">
               Available On
             </label>
             <input
@@ -111,7 +112,7 @@ const AddMenu = () => {
             />
           </div>
           <div>
-            <label htmlfor="menuURL" className="block text-l">
+            <label htmlFor="menuURL" className="block text-l">
               Menu Image
             </label>
             <input

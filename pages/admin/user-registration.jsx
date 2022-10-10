@@ -70,7 +70,10 @@ const userRegistration = () => {
         <div className="bg-gray-100 text-2xl h-20 justify-center flex items-center rounded-lg">
           USER REGISTRATION
         </div>
-        <div> {error && <p className="text-red-500 flex items-center">{error}</p>}</div>
+        <div>
+        
+          {error && <p className="text-red-500 flex items-center">{error}</p>}
+        </div>
         <div className=" grid lg:grid-cols-2 gap-5 w-full items-center">
           <div className="text-gray-700">
             <label htmlFor="username" className="block text-l">

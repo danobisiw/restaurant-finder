@@ -1,53 +1,51 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
 const ordersSchema = new Schema(
   {
-    orderCategory: [],
- 
+    orderCategory: {
+      type:String
+    },
+
     servedBy: {
       type: String,
     },
-    client: [{ type: Schema.Types.ObjectId, ref: "Users" }],
-    shopName: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
-    orderStatus: [served, delayed, processing],
+    client: { type: Schema.Types.ObjectId, ref: "Users" },
+    shopName: { type: Schema.Types.ObjectId, ref: "Shop" },
+    orderStatus: [],
 
     clientTelephoneNumber: {
       type: String,
     },
     itemPrice: {
-      type: String,
+      type: { type: Schema.Types.ObjectId, ref: "Menu" },
     },
     // orderReadyBy:{
     //   type:String,
     // },
-    orderNumber: {
+    orderNumber: 
+     { type: Schema.Types.ObjectId, ref: "Menu" },
+    
+    deliveryPoint: {
       type: String,
     },
-    deliveryPoint: {
-      type: [delivery, frontDesk, table],
-    },
-    Status: {
-      type: Number,
-      default: 0,
+    status: {
+      type: String,
+      
     },
     payMethod: {
       type: String,
-     
     },
     additionalRequest: {
-      type: [
-        {
-          text: { type: String, required: "" },
-          price: { type: Number, required: "" },
-        },
-      ],
-    },
+      type:String,
+    
+    }, 
   },
   {
     timestamps: true,
   }
-);
+)
 
-const orders = models.Orders || model("Orders", ordersSchema);
+
+const Orders = models.Orders || model("Orders", ordersSchema);
 export default Orders;
  

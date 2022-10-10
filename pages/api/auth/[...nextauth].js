@@ -34,8 +34,7 @@ export default NextAuth({
             firstName: user.firstName,
             lastName: user.lastName,
             location: user.location,
-            email:user.email,
-            
+            email: user.email,
           };
         }
 
@@ -46,5 +45,18 @@ export default NextAuth({
   pages: {
     signIn: "/admin/login",
     error: "/admin/login",
+  },
+  jwt: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user._id) token._id = user._id;
+      return token;
+    },
+    async session({ session, token }) {
+      if (token._id) session._id = token._id;
+      return session;
+    },
   },
 });

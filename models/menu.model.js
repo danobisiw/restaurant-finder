@@ -5,13 +5,13 @@ const menuSchema = new Schema(
     menuUrl: {
       type: String,
     },
-    menuName:{
-      type:String
+    menuName: {
+      type: String,
     },
-    
-    Shop: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
 
-    ratings: [{ type: Schema.Types.ObjectId, ref: "Shop" }],
+    Shop: { type: Schema.Types.ObjectId, ref: "Shop" },
+
+    ratings: { type: Schema.Types.ObjectId, ref: "Shop" },
     menuDescription: {
       type: String,
     },
@@ -21,7 +21,7 @@ const menuSchema = new Schema(
     available: {
       type: String,
     },
-    orderCategory: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
+    orderCategory: { type: Schema.Types.ObjectId, ref: "Orders" },
   },
   {
     timestamps: true,
