@@ -1,29 +1,30 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const MenuCard = ({ menu }) => {
+  const router = useRouter();
   // console.log(menu);
   return (
     <div>
       <div className="flex flex-col p-2 mb-20 ml-20 gap-5 justify-center items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <Link href={`/menu/${menu._id}`}>
           <Image
-            className="p-8 rounded-t-lg hover:cursor-pointer scale-50"
-            src={menu.imageUrl}
+            className="p-8 rounded-t-lg hover:cursor-pointer"
+            src={menu.menuUrl}
             alt="product image"
-            width="165"
-            height="185"
-          
+            width="500"
+            height="480"
           />
         </Link>
         <div className="px-5 pb-5">
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white w-80">
             {menu.menuName}
           </h5>
-          <div className="text-semibold">Available on: {menu.available}</div>
+          <div className="font-semibold">Available on: {menu.available}</div>
 
-          <h5 className="text-semibold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="font-semibold tracking-tight text-gray-900 dark:text-white">
             <div>Sold By: {menu.seller}</div>
           </h5>
           <div className="flex items-center mt-2.5 mb-5">

@@ -18,7 +18,8 @@ const Menus = ({ menus }) => {
       {menus?.map((menu, idx) => (
         // <p key={idx}>{menu.menuName}</p>
         <>
-        <Link href={`/api/menu/${menu._id}`}>{menu.menuName}</Link></>
+        <Link href={`/api/menu/${menu._id}`}>{menu.menuName}</Link>
+        </>
       ))}
     </div>
   );

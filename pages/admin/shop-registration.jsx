@@ -5,6 +5,8 @@ import isWindow from "../../utils/isWindow";
 
 const Shopregistration = () => {
   const [data, setData] = useState({
+    loginid: "",
+    password: "",
     shopName: "",
     location: "",
     streetName: "",
@@ -27,7 +29,8 @@ const Shopregistration = () => {
     e.preventDefault();
 
     const {
-      shopName,
+      loginid,
+      password: shopName,
       location,
       streetName,
       serviceType,
@@ -40,6 +43,8 @@ const Shopregistration = () => {
     } = data;
 
     if (
+      password === "" &&
+      loginid === "" &&
       shopName === "" &&
       location === "" &&
       streetName === "" &&
@@ -75,16 +80,43 @@ const Shopregistration = () => {
     }
   };
   return (
-    <div className="flex   justify-center mt-10 rounded-xl">
+    <div className="flex justify-center rounded-xl">
       <form
-        className=" border-3 max-w-l w-6/12 p-5 rounded space-y-3 border-opacity-60 shadow-md bg-blue-50 "
+        className=" border-3 max-w-l w-7/12 p-5 rounded space-y-3 border-opacity-60 shadow-md bg-blue-50 "
         onSubmit={handleSubmit}
       >
         <div className="bg-gray-300 flex justify-center items-center h-16 rounded-lg w-full">
           SHOP REGISTRATION
         </div>
         <div> {error && <p className="text-red-500">{error}</p>}</div>
-        <div className=" grid lg:grid-cols-2 gap-5 w-full items-center">
+        <div className=" grid lg:grid-cols-3 gap-5 w-full items-center">
+          <div>
+            <label htmlFor="loginid" className="block text-l">
+              Username
+            </label>
+            <input
+              type="loginid"
+              id="loginid"
+              name="loginid"
+              placeholder="choose unique username"
+              className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.loginid}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-l">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+              value={data.password}
+              onChange={handleChange}
+            />
+          </div>
           <div>
             <label htmlFor="shopName" className="block text-l">
               Shop Name

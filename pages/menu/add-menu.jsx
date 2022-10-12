@@ -10,7 +10,7 @@ const AddMenu = () => {
   const parsedata = JSON.parse(item);
 
   const [data, setData] = useState({
-    menuUrl: "null",
+    imageUrl: null,
     menuDescription: "",
     price: "",
     available: "",
@@ -30,20 +30,24 @@ const AddMenu = () => {
     e.preventDefault();
 
     try {
-
       const formData = new FormData();
       //type of data to br processed
 
+      formData.append("file", data.imageUrl);
       formData.append("upload_preset", "mern_blog");
+
+      // console.log(data);
 
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/danobisiw/image/upload",
         formData
       );
 
+      // console.log(response);
+
       const post = {
         ...data,
-        menuUrl: response.url,
+        menuUrl: response.data.url,
       };
 
       await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`, post);
@@ -150,7 +154,9 @@ const AddMenu = () => {
               name="menuUrl"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
               // value={data.menuURL}
-              onChange={(e) => setData({ ...data, image: e.target.files[0] })}
+              onChange={(e) =>
+                setData({ ...data, imageUrl: e.target.files[0] })
+              }
             />
           </div>
         </div>

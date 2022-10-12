@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const getServerSideProps = async () => {
   const result = await axios.get("http://localhost:3000/api/shops");
@@ -51,7 +52,7 @@ const Shops = ({ shops }) => {
                   scope="row"
                   className="py-4 px-6 font-lg text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800"
                 >
-                  <Link href="/menu/menusdata">{shop.shopName}</Link>
+                  <Link href="">{shop.shopName}</Link>
                 </th>
                 <td className="py-4 px-6">{shop.region}</td>
                 <td className="py-4 px-6 bg-gray-50 dark:bg-gray-800">

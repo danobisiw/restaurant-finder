@@ -2,6 +2,13 @@ const { Schema, model, models } = require("mongoose");
 
 const shopSchema = new Schema(
   {
+    shopid: {
+      type: String,
+      unique: true,
+    },
+    password: {
+      type: String,
+    },
     shopName: { type: String },
     location: {
       type: String,
