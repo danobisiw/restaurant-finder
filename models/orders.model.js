@@ -3,7 +3,7 @@ const { Schema, model, models } = require("mongoose");
 const ordersSchema = new Schema(
   {
     orderCategory: {
-      type:String
+      type: String,
     },
 
     servedBy: {
@@ -22,30 +22,29 @@ const ordersSchema = new Schema(
     // orderReadyBy:{
     //   type:String,
     // },
-    orderNumber: 
-     { type: Schema.Types.ObjectId, ref: "Menu" },
-    
+    orderNumber: { type: Schema.Types.ObjectId, ref: "Menu" },
+
     deliveryPoint: {
       type: String,
     },
     status: {
       type: String,
-      
     },
     payMethod: {
       type: String,
     },
     additionalRequest: {
-      type:String,
-    
-    }, 
+      type: String,
+    },
+    quantity: {
+      type: String,
+      default: 0,
+    },
   },
   {
     timestamps: true,
   }
-)
+);
 
-
-const Orders = models.Orders || model("Orders", ordersSchema);
-export default Orders;
- 
+const Order = models.Orders || model("Order", ordersSchema);
+export default Order;

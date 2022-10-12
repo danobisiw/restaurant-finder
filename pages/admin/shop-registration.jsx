@@ -1,19 +1,20 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import isWindow from "../../utils/isWindow";
 
-const shopregistration = () => {
+const Shopregistration = () => {
   const [data, setData] = useState({
-   shopName:"",
-     location:"",
-      streetName:"",
-      serviceType:"",
-      email:"",
-contactNumber:"",
-      contactManager:"",
-    region:"",   
-tin:"",
-gpsCode:"",
+    shopName: "",
+    location: "",
+    streetName: "",
+    serviceType: "",
+    email: "",
+    contactNumber: "",
+    contactManager: "",
+    region: "",
+    tin: "",
+    gpsCode: "",
   });
   const [error, setError] = useState("");
   const router = useRouter();
@@ -27,43 +28,51 @@ gpsCode:"",
 
     const {
       shopName,
-     location,
+      location,
       streetName,
       serviceType,
       email,
       contactNumber,
       contactManager,
-    region,
-tin,
-gpsCode,
+      region,
+      tin,
+      gpsCode,
     } = data;
 
-    if (shopName=== "" &&
-     location=== "" &&
-      streetName=== "" &&
-      serviceType=== "" &&
-      email=== "" &&
-      contactNumber=== "" &&
-      contactManager=== "" &&
-     region=== "" &&
-      tin=== "" &&
-      gpsCode==="" 
-      
-    ){
+    if (
+      shopName === "" &&
+      location === "" &&
+      streetName === "" &&
+      serviceType === "" &&
+      email === "" &&
+      contactNumber === "" &&
+      contactManager === "" &&
+      region === "" &&
+      tin === "" &&
+      gpsCode === ""
+    ) {
       setError("Please fill all blanks");
       return;
     }
-  
+
+    // console.log(data)
+
     try {
-     await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/shops`,
-        data
-      );
-      router.push("/menu/add-menu")
+      await axios
+        .post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/shops`, data)
+        .then((response) => {
+          if (response.data.success) {
+            setError("");
+            const item = JSON.stringify(response.data.payload);
+            isWindow && sessionStorage.setItem("authdata", item);
+            router.push("/admin/login");
+          } else {
+            setError(response.data.error);
+          }
+        });
     } catch (error) {
       setError(error.message);
     }
-  
   };
   return (
     <div className="flex   justify-center mt-10 rounded-xl">
@@ -226,4 +235,4 @@ gpsCode,
   );
 };
 
-export default shopregistration;
+export default Shopregistration;

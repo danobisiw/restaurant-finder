@@ -7,9 +7,11 @@ import Link from "next/link";
 export async function getStaticPaths() {
   const result = await getMenus();
 
+  console.log(result);
+
   // map through to get a single menu by id
   const paths = result.map((menu) => ({
-    params: { menuId: String(menu._id) },
+    params: { menuId: String(menu?._id) },
   }));
 
   return {
@@ -29,12 +31,12 @@ export async function getStaticProps(context) {
 }
 
 const MenuDetails = ({ menu }) => {
-  // console.log(menu)
+  console.log(menu);
   return (
     <div className="flex min-h-[calc(100vh-8)]">
       <div className="flex-1 flex items-center justify-center object-contain">
         <div className="w-80 h-64 relative mt-3">
-          <Link href={`/api/menu/${menu._id}`}>
+          <Link href={`/api/menu/menu_id`}>
             <Image src={menu.menuUrl} layout="fill" alt="" />
           </Link>
         </div>

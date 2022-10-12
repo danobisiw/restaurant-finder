@@ -1,20 +1,26 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import isWindow from "../../utils/isWindow";
 
 const AddMenu = () => {
+  const router = useRouter();
+  const item = isWindow && sessionStorage.getItem("authdata");
+  const parsedata = JSON.parse(item);
+
   const [data, setData] = useState({
-    menuURL: "null",
+    menuUrl: "null",
     menuDescription: "",
     price: "",
     available: "",
     menuName: "",
+    seller: parsedata?.seller,
   });
   const [error, setError] = useState("");
-  const router = useRouter();
+
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -22,16 +28,38 @@ const AddMenu = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+
+      const formData = new FormData();
+      //type of data to br processed
+
+      formData.append("upload_preset", "mern_blog");
+
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`,
-        { data, Shop: session?.user?._id }
+        "https://api.cloudinary.com/v1_1/danobisiw/image/upload",
+        formData
       );
+
+      const post = {
+        ...data,
+        menuUrl: response.url,
+      };
+
+      await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`, post);
+
       router.push("/");
     } catch (error) {
       setError(error.message);
     }
   };
+
+  // useEffect(() => {
+  //   const item = isWindow && sessionStorage.getItem("authdata");
+  //   if (!item) {
+  //     router.push("/admin/shop-registration");
+  //   }
+  // }, [router]);
 
   return (
     <div className="flex  min-h-[calc(100vh-100px)] justify-center items-center text-gray-700 my-2">
@@ -59,15 +87,16 @@ const AddMenu = () => {
           </div>
 
           <div className="text-gray-700">
-            <label htmlFor="shop" className="block text-l">
+            <label htmlFor="seller" className="block text-l">
               Shop
             </label>
             <input
-              type="shop"
-              id="shop"
-              name="shop"
+              type="seller"
+              id="seller"
+              name="seller"
+              required
               className="border p-2 w-full  rounded-lg focus:bg-gray-200 outline-none"
-              value={data.shop}
+              value={data.seller}
               onChange={handleChange}
             />
           </div>
@@ -112,16 +141,16 @@ const AddMenu = () => {
             />
           </div>
           <div>
-            <label htmlFor="menuURL" className="block text-l">
+            <label htmlFor="menuUrl" className="block text-l">
               Menu Image
             </label>
             <input
               type="file"
-              id="menuURL"
-              name="menupURL"
+              id="menuUrl"
+              name="menuUrl"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
               // value={data.menuURL}
-              onChange={handleChange}
+              onChange={(e) => setData({ ...data, image: e.target.files[0] })}
             />
           </div>
         </div>

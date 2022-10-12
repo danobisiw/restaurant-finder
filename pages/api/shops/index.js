@@ -2,8 +2,8 @@ import Shop from "../../../models/shop.model";
 import db from "../../../lib/dbConnect";
 
 export default async function handler(request, response) {
-  if (request.method === "GET" && request.method === "POST") {
-    response
+  if (!["POST", "GET"].includes(request.method)) {
+    return response
       .status(405)
       .json({ error: "Only POST and GET methods are allowed" });
   }
@@ -15,14 +15,21 @@ export default async function handler(request, response) {
     await db.disconnect();
 
     response.status(200).json({ shops });
-    return;
   } else if (request.method === "POST") {
     await db.connect();
 
-    const shop = await Shop.create({
-      ...request.body,
-    });
-    response.status(200).json({ shop });
-    return;
+    // console.log(request.body);
+
+    try {
+      console.log("creating");
+
+      const shop = await Shop.create({
+        ...request.body,
+      });
+
+      response.status(200).json({ payload: shop, success: true });
+    } catch (error) {
+      response.status(400).json({ error, success: false });
+    }
   }
 }

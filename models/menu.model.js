@@ -9,9 +9,10 @@ const menuSchema = new Schema(
       type: String,
     },
 
-    Shop: { type: Schema.Types.ObjectId, ref: "Shop" },
-
-    ratings: { type: Schema.Types.ObjectId, ref: "Shop" },
+    seller: {
+      type: { type: Schema.Types.ObjectId, ref: "Shop" },
+    },
+    ratings: [],
     menuDescription: {
       type: String,
     },

@@ -9,7 +9,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/admin/login");
+    router.push("/loginlanding");
   };
   return (
     <div className="bg-orange-400 text-white font-semibold sticky">
@@ -33,6 +33,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link href="/shops">Shops</Link>
+            </li>
+            <li>
+              <Link href="/menu/add-menu">Add Menu</Link>
             </li>
             <li>
               <Link href="/about">About</Link>

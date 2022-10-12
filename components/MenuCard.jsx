@@ -9,22 +9,22 @@ const MenuCard = ({ menu }) => {
       <div className="flex flex-col p-2 mb-20 ml-20 gap-5 justify-center items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <Link href={`/menu/${menu._id}`}>
           <Image
-            className="p-8 rounded-t-lg"
+            className="p-8 rounded-t-lg hover:cursor-pointer scale-50"
             src={menu.imageUrl}
             alt="product image"
             width="165"
-            height="150"
+            height="185"
+          
           />
         </Link>
         <div className="px-5 pb-5">
-          <a href="#">
-            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white w-80">
-              {menu.menuName}
-            </h5>
-            <div className="text-semibold">Available on: {menu.available}</div>
-          </a>
+          <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white w-80">
+            {menu.menuName}
+          </h5>
+          <div className="text-semibold">Available on: {menu.available}</div>
+
           <h5 className="text-semibold tracking-tight text-gray-900 dark:text-white">
-            <div>Sold By: {menu.shopName}</div>
+            <div>Sold By: {menu.seller}</div>
           </h5>
           <div className="flex items-center mt-2.5 mb-5">
             <svg
@@ -85,12 +85,11 @@ const MenuCard = ({ menu }) => {
             <p className="text-3xl font-bold text-gray-900 dark:text-white">
               GHC {menu?.price}
             </p>
-            <a
-              href="#"
+
+            <div
               className="text-orange ml-10 w-30 bg-white hover:bg-orange-600 focus:ring-4 focus:outline- focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-white dark:hover:bg-orange-600 dark:focus:ring-orange-600"
-            >
               Order
-            </a>
+            ></div>
           </div>
         </div>
       </div>

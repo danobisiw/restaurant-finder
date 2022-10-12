@@ -6,6 +6,7 @@ export const getMenus = async (id) => {
   );
 
   const menus = await result.data.menus;
+   
 
   if (id) {
     const menu = menus.find((menu) => menu._id === id);

@@ -2,10 +2,7 @@ const { Schema, model, models } = require("mongoose");
 
 const shopSchema = new Schema(
   {
-    shopName: {
-      type: String,
-      required: "",
-    },
+    shopName: { type: String },
     location: {
       type: String,
       required: true,
@@ -13,7 +10,10 @@ const shopSchema = new Schema(
     streetName: {
       type: String,
     },
-    serviceType: [],
+    serviceType: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
     },
@@ -23,20 +23,20 @@ const shopSchema = new Schema(
     contactManager: {
       type: String,
     },
-   
-    region: [],
+    region: {
+      type: String,
+      retuired: true,
+    },
     tin: {
       type: String,
-  
     },
-    gpsCode:{
-      type:String,
-    }
-    
+    gpsCode: {
+      type: String,
+    },
   },
   {
     timestamps: true,
   }
 );
-const Shop=models.Shop||model("Shop", shopSchema)
-export default Shop
+const Shop = models.Shop || model("Shop", shopSchema);
+export default Shop;

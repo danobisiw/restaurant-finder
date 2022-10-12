@@ -1,33 +1,32 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import {signIn} from "next-auth/react"
-import {useRouter} from "next/router"
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function Login() {
   const [data, setData] = useState({
     username: "",
     password: "",
   });
- const [error,setError]=useState("")
- const router=useRouter()
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
- const result=await signIn("credentials",{
-  username:data.username,
-  password:data.password,
-  redirect:false,
-  callbackUrl:"/"
- })
- if (result.error){
-  setError(result.error);
-
- }else{
-   router.push(router.query.redirect || "/"); //pushes the page to where the user was/in before he logged in
- }
+    const result = await signIn("credentials", {
+      username: data.username,
+      password: data.password,
+      redirect: false,
+      callbackUrl: "/",
+    });
+    if (result.error) {
+      setError(result.error);
+    } else {
+      router.push(router.query.redirect || "/"); //pushes the page to where the user was/in before he logged in
+    }
   };
   return (
     <div className="flex  min-h-[calc(100vh-100px)] justify-center items-center">
@@ -45,7 +44,7 @@ function Login() {
             Username
           </label>
           <input
-            type="username" 
+            type="username"
             id="username"
             name="username"
             className="border p-2 w-full outline-none rounded-lg focus:bg-gray-100"
@@ -65,9 +64,9 @@ function Login() {
             value={data.password}
             onChange={handleChange}
           />
-          <span className="text-opacity-5 font-semibold ">
-            New User?
-            <Link href="/admin/user-registration" className="hover:underline">
+          <span className="text-opacity-5 font-normal ">
+            New user?
+            <Link href="/loginlanding" className="hover:underline">
               Click here
             </Link>
           </span>
