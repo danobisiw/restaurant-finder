@@ -4,25 +4,6 @@ import { getMenus } from "../../utils/getMenus";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-//get static props function
-export async function getStaticPaths() {
-  const result = await getMenus();
-
-  // console.log(result);
-
-  // map through to get a single menu by id
-  const paths = result.map((menu) => ({
-    params: { menuId: String(menu?._id) },
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  };
-  //  const handleSubmit = async (e) => {
-  //     e.preventDefault();
-}
-
 export async function getStaticProps(context) {
   const menu = await getMenus(context.params.menuId);
 

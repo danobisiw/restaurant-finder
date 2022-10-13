@@ -5,7 +5,7 @@ import isWindow from "../../utils/isWindow";
 
 const Shopregistration = () => {
   const [data, setData] = useState({
-    loginid: "",
+    shopid: "",
     password: "",
     shopName: "",
     location: "",
@@ -29,8 +29,9 @@ const Shopregistration = () => {
     e.preventDefault();
 
     const {
-      loginid,
-      password: shopName,
+      shopid,
+      password,
+      shopName,
       location,
       streetName,
       serviceType,
@@ -44,7 +45,7 @@ const Shopregistration = () => {
 
     if (
       password === "" &&
-      loginid === "" &&
+      shopid === "" &&
       shopName === "" &&
       location === "" &&
       streetName === "" &&

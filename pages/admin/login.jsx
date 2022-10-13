@@ -54,7 +54,7 @@ function Login() {
             onChange={handleChange}
           >
             <option value="selecttype">-----Login As----</option>
-            <option value="buyer">Buyer</option>
+            <option value="User">User</option>
             <option value="Shop">Shop</option>
           </select>
         </div>

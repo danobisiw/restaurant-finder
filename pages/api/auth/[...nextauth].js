@@ -17,13 +17,13 @@ export default NextAuth({
 
                     // find user
                     if (credentials.loginAs === "user") {
-                        user = await User.findOne({email: credentials.email});
-                    } else if (credentials.loginAs === "shop") {
+                        user = await User.findOne({username: credentials.username});
+                    } else if (credentials.loginAs === "Shop") {
                         console.log(credentials);
                         shop = await Shop.findOne({shopid: credentials.shopid});
                     }
 
-                    console.log(user);
+                    // console.log(user);
                     // disconnect database
                     await db.disconnect();
 
@@ -41,7 +41,7 @@ export default NextAuth({
 
                         };
                     }
-                    throw new Error("Invalid email or password");
+                    throw new Error("Invalid username or password");
                 }
             }
         ),
