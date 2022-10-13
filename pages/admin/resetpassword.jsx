@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const resetpassword = () => {
+const ResetPassword = () => {
   return (
     <div className="flex  min-h-[calc(100vh-68px)] justify-center items-center flex-col ">
       <h3 className="bg-gray-100 w-3/12 h-20 justify-center flex items-center rounded-t-lg">
@@ -56,4 +56,4 @@ const resetpassword = () => {
   );
 };
 
-export default resetpassword
+export default ResetPassword;

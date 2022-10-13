@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const userRegistration = () => {
+const UserRegistration = () => {
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -192,4 +192,4 @@ const userRegistration = () => {
   );
 };
 
-export default userRegistration;
+export default UserRegistration;
