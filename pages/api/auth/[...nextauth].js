@@ -19,7 +19,7 @@ export default NextAuth({
                     if (credentials.loginAs === "user") {
                         user = await User.findOne({username: credentials.username});
                     } else if (credentials.loginAs === "Shop") {
-                        console.log(credentials);
+                        // console.log(credentials);
                         shop = await Shop.findOne({shopid: credentials.shopid});
                     }
 

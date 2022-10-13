@@ -4,7 +4,7 @@ import { getMenus } from "../../utils/getMenus";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const menu = await getMenus(context.params.menuId);
 
   return {
