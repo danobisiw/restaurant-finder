@@ -16,7 +16,6 @@ export const getServerSideProps = async () => {
 const Shops = ({ shops }) => {
   return (
     <div>
-  
       <span>
         <h5 className="text-2xl mb-4">Available Shops</h5>
       </span>
@@ -45,9 +44,13 @@ const Shops = ({ shops }) => {
             </tr>
           </thead>
 
-          {shops.map((shop) => (
-            <tbody key={shop._id} shop={shop}>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
+          <tbody>
+            {shops?.map((shop, idx) => (
+              <tr
+                key={shop._id}
+                shop={shop}
+                className="border-b border-gray-200 dark:border-gray-700"
+              >
                 <th
                   scope="row"
                   className="py-4 px-6 font-lg text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800"
@@ -64,8 +67,8 @@ const Shops = ({ shops }) => {
                 </td>
                 <td className="py-4 px-6">{shop.email}</td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
