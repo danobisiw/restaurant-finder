@@ -1,10 +1,8 @@
-import React from 'react'
-import MenuCard from './MenuCard'
-import Search from './search';
+import React from "react";
+import MenuCard from "./MenuCard";
+import Search from "./Search";
 
-
-
-const MenuList = ({menus}) => {
+const MenuList = ({ menus }) => {
   // console.log(menus)
   return (
     <div>
@@ -30,14 +28,12 @@ const MenuList = ({menus}) => {
         <Search />
       </div>
       <div className="w-100 flex items-center justify-center flex-wrap mt-10 py-10">
-        {menus.map(menu => (
+        {menus.map((menu) => (
           <MenuCard key={menu._id} menu={menu}></MenuCard>
         ))}
-      
       </div>
     </div>
   );
-} 
+};
 
 export default MenuList;
-
