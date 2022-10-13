@@ -2,7 +2,7 @@ import Image from "next/image";
 import Banner from "../components/Banner";
 import MenuList from "../components/MenuList";
 import styles from "../styles/Home.module.css";
-import Search from "../components/Search";
+
 import axios from "axios";
 import {getMenus} from "../utils/getMenus"
 
