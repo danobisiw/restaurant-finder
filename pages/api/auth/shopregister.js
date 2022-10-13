@@ -1,6 +1,6 @@
 import db from "../../../lib/dbConnect";
 import Shop from "../../../models/shop.model";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 async function shophandler(request, response) {
     if (request.method !== "POST") {
@@ -8,25 +8,29 @@ async function shophandler(request, response) {
         return;
     }
 
-    const {shopid, password} = request.body;
+    const {email, password} = request.body;
+
+    console.log(req.body)
 
     await db.connect();
 
-    const shopidExists = await Shop.findOne({shopid});
-    console.log(shopidExists);
-    if (shopidExists) {
+    const usernameExists = await Shop.findOne({email});
+    // console.log(usernameExists);
+    if (usernameExists) {
         response.status(409).json({error: "Shop name already exist"});
         await db.disconnect();
         return;
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const shop = await Shop.create({
-        ... request.body,
-        password: hashedPassword
-    });
 
-    response.status(201).json({shop});
+    // const shop = await Shop.create({
+    //     ... request.body,
+    //     password: hashedPassword
+    // });
+
+    console.log(hashedPassword)
+
+    // response.status(201).json({shop});
 }
 
 export default shophandler;

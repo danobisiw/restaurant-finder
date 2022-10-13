@@ -5,7 +5,6 @@ import isWindow from "../../utils/isWindow";
 
 const Shopregistration = () => {
   const [data, setData] = useState({
-    shopid: "",
     password: "",
     shopName: "",
     location: "",
@@ -29,7 +28,6 @@ const Shopregistration = () => {
     e.preventDefault();
 
     const {
-      shopid,
       password,
       shopName,
       location,
@@ -45,7 +43,6 @@ const Shopregistration = () => {
 
     if (
       password === "" &&
-      shopid === "" &&
       shopName === "" &&
       location === "" &&
       streetName === "" &&
@@ -61,7 +58,7 @@ const Shopregistration = () => {
       return;
     }
 
-    // console.log(data)
+    console.log(data);
 
     try {
       await axios
@@ -77,7 +74,7 @@ const Shopregistration = () => {
           }
         });
     } catch (error) {
-      setError(error.message);
+      setError(error.response);
     }
   };
   return (
@@ -92,19 +89,19 @@ const Shopregistration = () => {
         <div> {error && <p className="text-red-500">{error}</p>}</div>
         <div className=" grid lg:grid-cols-3 gap-5 w-full items-center">
           <div>
-            <label htmlFor="loginid" className="block text-l">
-              Username
+            <label htmlFor="email" className="block text-l">
+              Email
             </label>
             <input
-              type="loginid"
-              id="loginid"
-              name="loginid"
-              placeholder="choose unique username"
+              type="email"
+              id="email"
+              name="email"
               className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
-              value={data.loginid}
+              value={data.email}
               onChange={handleChange}
             />
           </div>
+
           <div>
             <label htmlFor="password" className="block text-l">
               Password
@@ -228,19 +225,6 @@ const Shopregistration = () => {
               <option value="pickup">pickup</option>
               <option value="delivery">delivery on</option>
             </select>
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-l">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
-              value={data.email}
-              onChange={handleChange}
-            />
           </div>
 
           <div>

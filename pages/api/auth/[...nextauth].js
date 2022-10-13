@@ -13,37 +13,56 @@ export default NextAuth({
                 async authorize(credentials) { // connect to database
                     await db.connect();
 
-                    let user;
+                    let entity;
 
                     // find user
                     if (credentials.loginAs === "user") {
-                        user = await User.findOne({username: credentials.username});
+                        entity = await User.findOne({email: credentials.email});
                     } else if (credentials.loginAs === "Shop") {
-                        // console.log(credentials);
-                        shop = await Shop.findOne({shopid: credentials.shopid});
+                        console.log(credentials);
+                        entity = await Shop.findOne({email: credentials.email});
                     }
 
-                    // console.log(user);
+
                     // disconnect database
                     await db.disconnect();
 
                     // check for user's password
-                    if (user && bcrypt.compareSync(credentials.password, user.password)) {
-                        return {
-                            _id: user._id,
-                            username: user.username,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
-                            location: user.location,
-                            email: user.email,
-                            telephoneNumber: user.telephoneNumber,
-                            gpscode: user.gpscode
+                    if (entity && bcrypt.compareSync(credentials.password, entity.password)) {
+                        if (credentials.loginAd === "shop") {
 
-                        };
+                            return {
+                                _id: entity._id,
+                                username: entity.username,
+                                firstName: entity.firstName,
+                                lastName: entity.lastName,
+                                location: entity.location,
+                                email: entity.email,
+                                telephoneNumber: entity.telephoneNumber,
+                                gpscode: entity.gpscode
+                            };
+                        } else {
+                            return {
+                                _id: entity._id,
+                                shopName: entity.shopName,
+                                streetName: entity.streetName,
+                                serviceType: entity.serviceType,
+                                contactManager: entity.contactManager,
+                                region: entity.region,
+                                tin: entity.tin,
+                                location: entity.location,
+                                email: entity.email,
+                                telephoneNumber: entity.telephoneNumber,
+                                gpscode: entity.gpscode
+                            };
+
+                        }
                     }
-                    throw new Error("Invalid username or password");
+
+                    throw new Error("Invalid email or password");
                 }
             }
+
         ),
     ],
     pages: {
@@ -76,5 +95,4 @@ export default NextAuth({
             return session;
         }
     }
-
 })

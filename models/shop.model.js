@@ -1,49 +1,47 @@
-const { Schema, model, models } = require("mongoose");
+import {Schema, model, models} from "mongoose";
 
-const shopSchema = new Schema(
-  {
-    shopid: {
-      type: String,
-      unique: true,
-    },
+const shopSchema = new Schema({
+    // shop: {
+    //     type: String,
+    //     unique: true
+    // },
     password: {
-      type: String,
+        type: String
     },
-    shopName: { type: String },
+    shopName: {
+        type: String
+    },
     location: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
     },
     streetName: {
-      type: String,
+        type: String
     },
     serviceType: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
     },
     email: {
-      type: String,
+        type: String
     },
     contactNumber: {
-      type: String,
+        type: String
     },
     contactManager: {
-      type: String,
+        type: String
     },
     region: {
-      type: String,
-      retuired: true,
+        type: String,
+        retuired: true
     },
     tin: {
-      type: String,
+        type: String
     },
     gpsCode: {
-      type: String,
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
+        type: String
+    }
+}, {timestamps: true});
+
 const Shop = models.Shop || model("Shop", shopSchema);
 export default Shop;
