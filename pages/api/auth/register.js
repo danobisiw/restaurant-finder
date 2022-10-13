@@ -1,5 +1,6 @@
 import db from "../../../lib/dbConnect";
 import User from "../../../models/user.model";
+import Shop from "../../../models/shop.model"
 import bcrypt from "bcrypt";
 
 async function handler(request, response) {
@@ -28,5 +29,8 @@ async function handler(request, response) {
 
   response.status(201).json({ user });
 }
+
+
+
 
 export default handler;

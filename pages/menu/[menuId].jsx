@@ -66,9 +66,7 @@ const MenuDetails = ({ menu }) => {
             cols="6"
             placeholder="Additional Request"
             className="border p-2 w-full outline-none resize-none mt-2"
-          >
-            Additional Request
-          </textarea>
+          ></textarea>
           <div className="flex justify-left">
             <button className="border-orange-500 border px-6 py-2 rounded text-range-600 hover:text-white duration-200 hover:bg-orange-500 mt-10 w-40">
               Click to Buy...

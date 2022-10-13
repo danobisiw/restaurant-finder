@@ -7,6 +7,7 @@ function Login() {
   const [data, setData] = useState({
     username: "",
     password: "",
+    loginAs: "",
   });
   const [error, setError] = useState("");
   const router = useRouter();
@@ -19,6 +20,7 @@ function Login() {
     const result = await signIn("credentials", {
       username: data.username,
       password: data.password,
+      loginAs: data.loginAs,
       redirect: false,
       callbackUrl: "/",
     });
@@ -39,6 +41,23 @@ function Login() {
         </div>
         {error && <p className="text-red-500 text-center">{error}</p>}
 
+        <div>
+          <label htmlFor="loginAs" className="block text-l">
+            Login As
+          </label>
+          <select
+            name="loginAs"
+            id="loginAs"
+            type="loginAs"
+            className="border p-2 w-full outline-none rounded-lg focus:bg-gray-200"
+            value={data.loginAs}
+            onChange={handleChange}
+          >
+            <option value="selecttype">-----Login As----</option>
+            <option value="buyer">Buyer</option>
+            <option value="Shop">Shop</option>
+          </select>
+        </div>
         <div>
           <label htmlFor="username" className="block text-l">
             Username

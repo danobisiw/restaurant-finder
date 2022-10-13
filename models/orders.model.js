@@ -39,7 +39,7 @@ const ordersSchema = new Schema(
     quantity: {
       type: String,
       default: 0,
-    },
+    }, 
   },
   {
     timestamps: true,

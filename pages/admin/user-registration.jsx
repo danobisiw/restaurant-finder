@@ -56,7 +56,7 @@ const userRegistration = () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/register`,
         data
       );
-      router.push("/");
+      router.push("/admin/login");
     } catch (error) {
       setError("Username already Taken");
     }
@@ -71,7 +71,6 @@ const userRegistration = () => {
           USER REGISTRATION
         </div>
         <div>
-        
           {error && <p className="text-red-500 flex items-center">{error}</p>}
         </div>
         <div className=" grid lg:grid-cols-2 gap-5 w-full items-center">

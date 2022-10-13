@@ -35,3 +35,10 @@ const ArtisanDetails = ({artisan}) => {
 
 export default ArtisanDetails
 
+
+
+        }
+
+        throw new Error("Invalid shop or password");
+      },
+      
