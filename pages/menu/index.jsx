@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { getMenus } from "../../utils/getMenus";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const menus = await getMenus();
 
   return {
@@ -18,7 +18,7 @@ const Menus = ({ menus }) => {
       {menus?.map((menu, idx) => (
         // <p key={idx}>{menu.menuName}</p>
         <>
-        <Link href={`/api/menu/${menu._id}`}>{menu.menuName}</Link>
+          <Link href={`/api/menu/${menu._id}`}>{menu.menuName}</Link>
         </>
       ))}
     </div>
