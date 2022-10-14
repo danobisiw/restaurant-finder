@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const getServerSideProps = async () => {
-  const result = await axios.get("http://localhost:3000/api/shops");
+  const result = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/shops`
+  );
   // console.log(result)
   return {
     props: {

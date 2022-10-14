@@ -19,7 +19,10 @@ export default function Home({menus}) {
     </div>);
 }
 export const getServerSideProps = async () => {
-    const result = await axios.get("http://localhost:3000/api/menu");
+    const result = await axios.get(`${
+        process.env.NEXT_PUBLIC_BASE_URL
+    }api/menu`);
+
     // console.log(result)
     return {
 
