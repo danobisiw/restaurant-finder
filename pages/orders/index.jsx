@@ -4,7 +4,9 @@ import { getMenus } from "../../utils/getMenus";
 import Image from "next/image";
 
 export const getServerSideProps = async () => {
-  const result = await axios.get("http://localhost:3000/api/menus");
+  const result = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/menus`
+  );
   return {
     props: {
       menus: result.data.menus,
