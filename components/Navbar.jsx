@@ -5,7 +5,7 @@ import Router, { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   const handleClick = () => {
@@ -46,6 +46,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="justify-end flex py-4">
+          <div className="justify-end py-4 flex">
+            <h4>Welcome: {session ? session?.user.email : "Guest"}</h4>
+          </div>
           {status === "authenticated" ? (
             <button
               className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 mr-28 py-2 hover:border-orange-500"

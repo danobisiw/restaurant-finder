@@ -18,12 +18,11 @@ export default NextAuth({
                     // find user
                     if (credentials.loginAs === "user") {
                         entity = await User.findOne({username: credentials.username});
-                    } else if (credentials.loginAs === "Shop") {
-                        console.log(credentials);
+                    } else if (credentials.loginAs === "Shop") { 
                         entity = await Shop.findOne({shopName: credentials.username});
                     }
 
-                    console.log(entity)
+                    // console.log(entity)
                     // disconnect database
                     await db.disconnect();
 
@@ -77,9 +76,11 @@ export default NextAuth({
         async jwt(
             {token, user}
         ) {
-            if (user._id) 
+            if (user) {
+                token.firstName = user.firstName
                 token._id = user._id;
-            
+                token.shopName = user.shopName
+            }
 
 
             return token;
@@ -87,9 +88,12 @@ export default NextAuth({
         async session(
             {session, token}
         ) {
-            if (token._id) 
-                session._id = token._id;
-            
+            if (token._id) {
+                session.user._id = token._id;
+                session.firstName = token.firstName
+                session.shopName = token.shopName
+
+            }
 
 
             return session;

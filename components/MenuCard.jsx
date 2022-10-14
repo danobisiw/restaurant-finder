@@ -2,9 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const MenuCard = ({ menu }) => {
   const router = useRouter();
+  const { data: session, status } = useSession();
   // console.log(menu);
   return (
     <div>
@@ -25,7 +27,7 @@ const MenuCard = ({ menu }) => {
           <div className="font-semibold">Available on: {menu.available}</div>
 
           <h5 className="font-semibold tracking-tight text-gray-900 dark:text-white">
-            <div>Sold By: {menu.seller}</div>
+            <div>Sold By: {session?.shopName}</div>
           </h5>
           <div className="flex items-center mt-2.5 mb-5">
             <svg
