@@ -74,7 +74,7 @@ const Shopregistration = () => {
           }
         });
     } catch (error) {
-      setError(error.response);
+      setError("User already exit");
     }
   };
   return (

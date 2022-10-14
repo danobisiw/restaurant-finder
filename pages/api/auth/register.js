@@ -11,7 +11,7 @@ async function handler(request, response) {
 
     const {username, password} = request.body;
 
-    console.log(req.body)
+    // console.log(req.body)
 
     await db.connect();
 

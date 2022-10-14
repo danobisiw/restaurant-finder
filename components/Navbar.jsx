@@ -9,7 +9,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/loginlanding");
+    router.push("/admin/login");
   };
   return (
     <div className="bg-orange-400 text-white font-semibold sticky">

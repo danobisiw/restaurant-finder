@@ -17,19 +17,19 @@ export default NextAuth({
 
                     // find user
                     if (credentials.loginAs === "user") {
-                        entity = await User.findOne({email: credentials.email});
+                        entity = await User.findOne({username: credentials.username});
                     } else if (credentials.loginAs === "Shop") {
                         console.log(credentials);
-                        entity = await Shop.findOne({email: credentials.email});
+                        entity = await Shop.findOne({shopName: credentials.username});
                     }
 
-
+                    console.log(entity)
                     // disconnect database
                     await db.disconnect();
 
                     // check for user's password
                     if (entity && bcrypt.compareSync(credentials.password, entity.password)) {
-                        if (credentials.loginAd === "shop") {
+                        if (credentials.loginAd === "Shop") {
 
                             return {
                                 _id: entity._id,

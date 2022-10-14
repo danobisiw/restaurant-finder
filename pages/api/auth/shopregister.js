@@ -17,7 +17,10 @@ async function shophandler(request, response) {
     const usernameExists = await Shop.findOne({email});
     // console.log(usernameExists);
     if (usernameExists) {
+
         response.status(409).json({error: "Shop name already exist"});
+console.log(usernameExists)
+
         await db.disconnect();
         return;
     }
@@ -28,7 +31,7 @@ async function shophandler(request, response) {
     //     password: hashedPassword
     // });
 
-    console.log(hashedPassword)
+    // console.log(hashedPassword)
 
     // response.status(201).json({shop});
 }

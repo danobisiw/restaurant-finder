@@ -17,15 +17,14 @@ export default async function handler(request, response) {
     } else if (request.method === "POST") {
         await db.connect();
 
-        // console.log(request.body);
+        console.log(request.body);
         const {shopName, password} = request.body
-
+        console.log(request.body)
         try {
             console.log("creating");
 
             const usernameExists = await Shop.findOne({shopName});
-            // console.log(usernameExists);
-            console.log("created");
+            // console.log(usernameExists);;
 
             if (usernameExists) {
                 response.status(409).json({error: "Shop name already exist"});
