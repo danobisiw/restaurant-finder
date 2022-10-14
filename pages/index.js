@@ -21,7 +21,7 @@ export default function Home({menus}) {
 export const getServerSideProps = async () => {
     const result = await axios.get(`${
         process.env.NEXT_PUBLIC_BASE_URL
-    }api/menu`);
+    }/api/menu`);
 
     // console.log(result)
     return {
