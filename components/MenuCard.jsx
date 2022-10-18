@@ -10,7 +10,7 @@ const MenuCard = ({ menu }) => {
   // console.log(menu);
   return (
     <div>
-      <div className="flex flex-col p-2 mb-20 ml-20 gap-5 justify-center items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex flex-col p-2 mb-20 justify-between mr-5 ml-5 items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mx-auto">
         <Link href={`/menu/${menu._id}`}>
           <Image
             className="p-8 rounded-t-lg hover:cursor-pointer"

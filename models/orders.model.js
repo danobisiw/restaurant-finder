@@ -1,50 +1,59 @@
-const { Schema, model, models } = require("mongoose");
+const {Schema, model, models} = require("mongoose");
 
-const ordersSchema = new Schema(
-  {
+const ordersSchema = new Schema({
     orderCategory: {
-      type: String,
+        type: String
     },
 
     servedBy: {
-      type: String,
+        type: String
     },
-    client: { type: Schema.Types.ObjectId, ref: "Users" },
-    shopName: { type: Schema.Types.ObjectId, ref: "Shop" },
+    client: {
+        type: Schema.Types.ObjectId,
+        ref: "Users"
+    },
+    shopName: {
+        type: Schema.Types.ObjectId,
+        ref: "Shop"
+    },
     orderStatus: [],
 
     clientTelephoneNumber: {
-      type: String,
+        type: String
     },
     itemPrice: {
-      type: { type: Schema.Types.ObjectId, ref: "Menu" },
+        type: {
+            type: Schema.Types.ObjectId,
+            ref: "Menu"
+        }
     },
     // orderReadyBy:{
-    //   type:String,
+    // type:String,
     // },
-    orderNumber: { type: Schema.Types.ObjectId, ref: "Menu" },
+    orderNumber: {
+        type: Schema.Types.ObjectId,
+        ref: "Menu"
+    },
 
     deliveryPoint: {
-      type: String,
+        type: String
     },
     status: {
-      type: String,
+        type: String
     },
     payMethod: {
-      type: String,
+        type: String
     },
     additionalRequest: {
-      type: String,
+        type: Schema.Types.ObjectId,
+        ref: "Menu"
     },
+
     quantity: {
-      type: String,
-      default: 0,
-    }, 
-  },
-  {
-    timestamps: true,
-  }
-);
+        type: String,
+        default: 0
+    }
+}, {timestamps: true});
 
 const Order = models.Orders || model("Order", ordersSchema);
 export default Order;

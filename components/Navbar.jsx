@@ -12,8 +12,8 @@ const Navbar = () => {
     router.push("/admin/login");
   };
   return (
-    <div className="bg-orange-400 text-white font-semibold sticky">
-      <nav className="flex justify-between  items-center text-base gap-3 ml-10">
+    <div className="bg-orange-400 text-white font-semibold top-0 fixed z-50">
+      <nav className="flex  justify-between items-center text-base gap-3 w-screen">
         <div className="cursor-pointer">
           <Link href="/">
             <Image
@@ -26,10 +26,10 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="mr-[50%]">
+        <div className="flex ">
           <ul className="flex gap-4 items-center">
             <li>
-              <Link href="/home">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
               <Link href="/shops">Shops</Link>
@@ -45,9 +45,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="justify-end flex py-4">
-          <div className="justify-end py-4 flex">
-            <h4>Welcome: {session ? session?.user.email : "Guest"}</h4>
+        <div className="justify-end flex py-2">
+          <div className="justify-end py-3 flex">
+            <h4>Welcome, {session ? session?.user.email : "Guest"}</h4>
           </div>
           {status === "authenticated" ? (
             <button
@@ -58,7 +58,7 @@ const Navbar = () => {
             </button>
           ) : (
             <button
-              className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 py-2 mr-28"
+              className="border-white rounded hover:text-orange-500 duration-200 hover:bg-white w-28 py-2 ml-3"
               onClick={handleClick}
             >
               Sign In

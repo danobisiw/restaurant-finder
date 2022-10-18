@@ -10,7 +10,7 @@ import {getMenus} from "../utils/getMenus"
 
 export default function Home({menus}) {
     const {data: session, status} = useSession();
-    console.log(session)
+    // console.log(session)
     return (<div className={
         styles.container
     }>
