@@ -10,7 +10,7 @@ async function shophandler(request, response) {
 
     const {email, password} = request.body;
 
-    console.log(req.body)
+    // console.log(req.body)
 
     await db.connect();
 

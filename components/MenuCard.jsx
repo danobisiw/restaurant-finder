@@ -7,7 +7,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 const MenuCard = ({ menu }) => {
   const router = useRouter();
   const { data: session, status } = useSession();
-  // console.log(menu);
+  console.log(menu);
   return (
     <div>
       <div className="flex flex-col p-2 mb-20 justify-between mr-5 ml-5 items-center w-auto max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mx-auto">
@@ -27,7 +27,7 @@ const MenuCard = ({ menu }) => {
           <div className="font-semibold">Available on: {menu.available}</div>
 
           <h5 className="font-semibold tracking-tight text-gray-900 dark:text-white">
-            <div>Sold By: {session?.shopName}</div>
+            <div>Sold By: {menu?.shopName}</div>
           </h5>
           <div className="flex items-center mt-2.5 mb-5">
             <svg

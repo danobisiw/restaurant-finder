@@ -55,12 +55,12 @@ const AddMenu = () => {
     }
   };
 
-  useEffect(() => {
-    const item = isWindow && sessionStorage.getItem("authdata");
-    if (!item) {
-      router.push("/admin/shop-registration");
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const item = isWindow && sessionStorage.getItem("authdata");
+  //   if (!item) {
+  //     router.push("/admin/shop-registration");
+  //   }
+  // }, [router]);
 
   return (
     <div className="flex  min-h-[calc(100vh-100px)] justify-center items-center text-gray-700 my-2">
@@ -107,9 +107,9 @@ const AddMenu = () => {
             </label>
             <textarea
               name="menuDescription"
-              cols="5"
+              cols="3"
               id="menuDescription"
-              rows="5"
+              rows="3"
               className="border p-2 w-full rounded-lg focus:bg-gray-200 resize-none outline-none"
               value={data.menuDescription}
               onChange={handleChange}

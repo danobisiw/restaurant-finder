@@ -15,8 +15,7 @@ const Layout = ({title, children}) => {
         <div className="flex min-h-screen flex-col">
             <Navbar/>
             <main className="container mx-auto px-4"> {children}</main>
-
-            <Footer className="absolute bottom-0 m-auto px-4"></Footer>
+            <Footer className="absolute object-bottom m-auto"></Footer>
         </div>
     </>);
 };

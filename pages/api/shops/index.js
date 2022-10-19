@@ -21,7 +21,7 @@ export default async function handler(request, response) {
         const {shopName, password} = request.body
         console.log(request.body)
         try {
-            console.log("creating");
+            // console.log("creating");
 
             const usernameExists = await Shop.findOne({shopName});
             // console.log(usernameExists);;
